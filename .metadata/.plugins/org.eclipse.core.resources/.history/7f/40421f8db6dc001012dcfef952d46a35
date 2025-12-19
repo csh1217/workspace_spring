@@ -1,9 +1,0 @@
-package org.joonzis.controller;
-
-import org.joonzis.DI_1.LgTV;
-
-public class UserTV {
-	LgTV ltv = new LgTV();
-	ltv.
-
-}
