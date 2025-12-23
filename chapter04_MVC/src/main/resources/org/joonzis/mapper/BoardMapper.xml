@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.joonzis.mapper.BoardMapper">
+	<select id="getList" resultType="org.joonzis.domain.BoardVO">
+		SELECT * FROM TBL_BOARD
+	</select>
+	
+	<insert id="insertList" parameterType="org.joonzis.domain.BoardVO">
+		INSERT INTO TBL_BOARD VALUES(
+			SEQ_BOARD.nextval,
+			#{title},
+			#{content},
+			#{writer},
+			SYSDATE,
+			SYSDATE
+		)
+	</insert>
+	
+	<select id="readList" parameterType="int" resultType="org.joonzis.domain.BoardVO">
+		SELECT * FROM TBL_BOARD WHERE BNO=#{bno}
+	</select>
+	
+	<delete id="deleteList" parameterType="int">
+		DELETE FROM TBL_BOARD WHERE BNO=#{bno}
+	</delete>
+	
+	<update id="updateList" parameterType="org.joonzis.domain.BoardVO">
+		UPDATE TBL_BOARD
+		SET TITLE=#{title}, CONTENT=#{content}, WRITER=#{writer}, UPDATEDATE=SYSDATE
+		WHERE BNO=#{bno}
+	</update>
+</mapper>

@@ -1,4 +1,4 @@
-package org.joonzis.DI_3;
+package org.joonzis.DI_3_scope;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;

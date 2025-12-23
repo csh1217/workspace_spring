@@ -1,4 +1,4 @@
-package org.joonzis.DI_3;
+package org.joonzis.DI_3_scope;
 
 public class LgTV implements TV{
 	public LgTV() {

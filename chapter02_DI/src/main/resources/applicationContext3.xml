@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:context="http://www.springframework.org/schema/context" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-	
-	
-	<bean id = "" class="org.joonzis.DI_3.LgTV"></bean>
-	<bean id = "" class="org.joonzis.DI_3.SamsungTV"></bean>
 
+<!-- new SamsungTV() 또는 new LgTV와 같나? -->
+	<bean id="stv" class="org.joonzis.DI_3_scope.SamsungTV"></bean>
+	<bean id="ltv" class="org.joonzis.DI_3_scope.LgTV" scope="prototype"></bean>
+<!-- 
+	scope란?
+	- singleton : 객체 하나 
+	- prototype : 호출 할 때마다 객체 생성
+	( * 설정하지 않으면 디폴트 값이 singleton )
+ -->
 </beans>
