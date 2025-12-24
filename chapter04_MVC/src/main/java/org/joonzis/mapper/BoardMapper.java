@@ -14,5 +14,5 @@ public interface BoardMapper {
 	// 데이터 삽입 insert
 	// 단일 데이터 보기
 	// 데이터 삭제 delete -- 기본키로 삭제
-	// 기본키 수정 update -- 
+	// 데이터 수정 update -- 
 }

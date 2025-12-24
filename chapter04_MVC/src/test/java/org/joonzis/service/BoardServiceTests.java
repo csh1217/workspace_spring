@@ -21,13 +21,13 @@ public class BoardServiceTests {
 	private BoardService service; 
 	
 //	@Test
-//	public void getList() {
+//	public void testGetList() {
 //		List<BoardVO> list = service.getList();
 //		service.getList().forEach(vo -> log.info(vo))
 //	}
 	
 	@Test
-	public void insert() {
+	public void testInsert() {
 		BoardVO bvo = new BoardVO();
 		bvo.setTitle("title");
 		bvo.setContent("content");
@@ -36,21 +36,21 @@ public class BoardServiceTests {
 	}
 
 //	@Test
-//	public void getOne() {
+//	public void testGet() {
 //		int bno = 3;
 //		BoardVO bvo = service.get(bno);
 //		log.info(bvo);
 //	}
 	
 //	@Test
-//	public void remove() {
+//	public void testRemove() {
 //		int bno = 2;
 //		boolean result = service.remove(bno);
 //		log.info("result : " + result);
 //	}
 	
 //	@Test
-//	public void update() {
+//	public void testUpdate() {
 //		BoardVO bvo = new BoardVO();
 //		bvo.setBno(3);
 //		bvo.setTitle("fixed title");

@@ -44,8 +44,4 @@ public class BoardServiceImpl implements BoardService{
 		log.info("modify..." + bvo);
 		return mapper.updateList(bvo) == 1;
 	}
-	
-	
-	
-	
 }
