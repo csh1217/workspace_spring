@@ -11,8 +11,6 @@ document.querySelectorAll('button').forEach(btn=>{
     let type = e.target.id;
     if(type === "modifyBtn"){
       modify();
-    }else if(type === "indexBtn"){
-      location.href = "/board/list"
     }else if(type === "removeBtn"){
       remove();
     }
@@ -29,6 +27,9 @@ function modify(){
 }
 
 function remove(){
+  const bnoEle = f.bno;   // bno를 담고 있는 input 태그
+  f.innerHTML = '';       // form 태그 내부 비우기
+  f.appendChild(bnoEle);  // form 태그 내부에 bno 태그 추가
   const result = confirm("삭제하시겠습니까?")
   if(result === false){
     return;
@@ -36,4 +37,3 @@ function remove(){
   f.action = "/board/remove";
   f.submit();
 }
-

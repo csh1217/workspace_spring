@@ -14,8 +14,6 @@ document.querySelectorAll('button').forEach(btn=>{
       register();
     }else if(type === "resetBtn"){
       f.reset();
-    }else if(type === "indexBtn"){
-      location.href = "/board/list"
     }
   })
 })

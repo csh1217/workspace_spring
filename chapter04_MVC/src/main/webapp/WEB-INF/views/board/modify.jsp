@@ -31,7 +31,7 @@
 					<tr>
 						<th>내용</th>
 						<td>
-							<textarea rows="10" cols="76" name="content" >${vo.content }</textarea>
+							<textarea rows="10" cols="76" name="content" >${vo.content}</textarea>
 						</td>
 					</tr>
 				</tbody>

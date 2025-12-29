@@ -1,6 +1,8 @@
 package org.joonzis.controller;
 
 import org.joonzis.domain.BoardVO;
+import org.joonzis.domain.Criteria;
+import org.joonzis.domain.PageDTO;
 import org.joonzis.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,15 +22,34 @@ public class BoardController {
 	private BoardService service;
 	
 	//전체 데이터 조회
+//	@GetMapping("/list")
+//	public String list (Model model) { 
+//		log.info("list");
+//		model.addAttribute("list", service.getList());
+//		return "/board/list"; // 들어오는 경로와 return 경로가 같을 시 void 로 return 생략 가능
+//	}
 	@GetMapping("/list")
-	public String list (Model model) { 
-		log.info("list");
-		model.addAttribute("list", service.getList());
+	public String list (Criteria cri, Model model) { 
+		log.info("list..." + cri);
+
+		// 데이터가 잘못 들어왔을 경우
+		if(cri.getPageNum() == 0 || cri.getAmount() == 0) {
+			cri.setPageNum(1);
+			cri.setAmount(12);
+		}
+		
+		model.addAttribute("list", service.getList(cri));
+		int total = service.getTotal();
+		log.info("total..." + total);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 		return "/board/list"; // 들어오는 경로와 return 경로가 같을 시 void 로 return 생략 가능
 	}
+	
 	// 게시글 등록 페이지 이동
 	@GetMapping("/register")
 	public void registerPage(){}
+	
 	// 게시글 등록
 	@PostMapping("/register")
 	public String register(BoardVO bvo) {

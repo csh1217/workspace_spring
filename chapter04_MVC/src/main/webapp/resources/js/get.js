@@ -11,8 +11,6 @@ document.querySelectorAll('button').forEach(btn=>{
     let type = e.target.id;
     if(type === "modifyBtn"){
       modify();
-    }else if(type === "indexBtn"){
-      location.href = "/board/list"
     }
   })
 })

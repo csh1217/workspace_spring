@@ -3,8 +3,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.joonzis.mapper.BoardMapper">
-	<select id="getList" resultType="org.joonzis.domain.BoardVO">
-		SELECT * FROM TBL_BOARD
+	<select id="getList" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BoardVO">
+		<![CDATA[
+			SELECT BNO, TITLE, WRITER, REGDATE FROM
+				(SELECT ROWNUM AS RN, A.* FROM
+					(SELECT BNO, TITLE, WRITER, REGDATE FROM TBL_BOARD ORDER BY BNO DESC) A
+				WHERE ROWNUM <= #{pageNum} * #{amount})
+			WHERE RN > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*) FROM TBL_BOARD
 	</select>
 	
 	<insert id="insertList" parameterType="org.joonzis.domain.BoardVO">
@@ -31,4 +41,9 @@
 		SET TITLE=#{title}, CONTENT=#{content}, WRITER=#{writer}, UPDATEDATE=SYSDATE
 		WHERE BNO=#{bno}
 	</update>
+	
+	<insert id="">
+	
+	</insert>
+	
 </mapper>
