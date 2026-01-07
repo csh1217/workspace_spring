@@ -20,7 +20,7 @@ const replyService = (function(){
   // 목록
   function getList(bno, callback){
     fetch(`/reply/pages/` + bno + '.json')
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
       callback(data);
     })
@@ -61,7 +61,7 @@ const replyService = (function(){
   // 조회
   function get(rno, callback){
     fetch(`/reply/` + rno + '.json')
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
       callback(data);
     })
