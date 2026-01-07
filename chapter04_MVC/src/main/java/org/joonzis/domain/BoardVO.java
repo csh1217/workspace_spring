@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @Data
 public class BoardVO {
-	private int bno;
+	private int bno, replycnt;
 	private String title, content, writer;
 	private Date regdate, updatedate;
 }

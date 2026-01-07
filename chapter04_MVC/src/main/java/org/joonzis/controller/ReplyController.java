@@ -1,5 +1,6 @@
 package org.joonzis.controller;
 
+import org.joonzis.service.BoardService;
 import org.joonzis.service.ReplyService;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class ReplyController {
 			)
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 		log.info("ReplyVO "+vo);
+		log.info("게시물 번호 : " + vo.getBno());
 		int result = service.register(vo);
 		// 삼항 연산자
 		// result가 1이면 상태가 ok인 객체 반환

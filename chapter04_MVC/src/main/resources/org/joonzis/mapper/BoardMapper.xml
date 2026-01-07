@@ -5,9 +5,9 @@
 <mapper namespace="org.joonzis.mapper.BoardMapper">
 	<select id="getList" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BoardVO">
 		<![CDATA[
-			SELECT BNO, TITLE, WRITER, REGDATE FROM
+			SELECT BNO, TITLE, WRITER, REGDATE, replycnt FROM
 				(SELECT ROWNUM AS RN, A.* FROM
-					(SELECT BNO, TITLE, WRITER, REGDATE FROM TBL_BOARD ORDER BY BNO DESC) A
+					(SELECT BNO, TITLE, WRITER, REGDATE, replycnt FROM TBL_BOARD ORDER BY BNO DESC) A
 				WHERE ROWNUM <= #{pageNum} * #{amount})
 			WHERE RN > (#{pageNum} - 1) * #{amount}
 		]]>
@@ -42,8 +42,8 @@
 		WHERE BNO=#{bno}
 	</update>
 	
-	<insert id="">
-	
-	</insert>
+	<update id="updateReplyCnt" parameterType="org.joonzis.domain.BoardVO">
+		UPDATE tbl_board set replycnt = replycnt +#{amount} where bno = #{bno}
+	</update>
 	
 </mapper>

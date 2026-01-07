@@ -32,6 +32,7 @@
 						<td>
 							<a href="${vo.bno}">
 								${vo.title }
+								<b>[${vo.replycnt}]</b>
 							</a>
 						</td>
 						<td>${vo.writer }</td>

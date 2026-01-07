@@ -2,6 +2,7 @@ package org.joonzis.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.joonzis.domain.BoardVO;
 import org.joonzis.domain.Criteria;
 
@@ -12,4 +13,5 @@ public interface BoardService {
 	public boolean remove(int bno);
 	public boolean modify(BoardVO bvo);
 	public int getTotal();
+	public void updateReplyCnt(int bno, int amount);
 }
