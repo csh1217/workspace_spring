@@ -1,6 +1,5 @@
 package org.joonzis.controller;
 
-import org.joonzis.service.BoardService;
 import org.joonzis.service.ReplyService;
 
 import java.util.List;
@@ -39,11 +38,11 @@ public class ReplyController {
 			)
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 		log.info("ReplyVO "+vo);
-		log.info("게시물 번호 : " + vo.getBno());
 		int result = service.register(vo);
 		// 삼항 연산자
 		// result가 1이면 상태가 ok인 객체 반환
 		// 아니면 내부 서버 오류 상태인 객체 반환
+
 		return result == 1 ? 
 				new ResponseEntity<String>("success",HttpStatus.OK):
 				new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
