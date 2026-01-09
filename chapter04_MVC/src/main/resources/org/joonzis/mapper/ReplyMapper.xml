@@ -41,4 +41,8 @@
 		WHERE 
 			rno=#{rno}
 </update>
+
+<delete id="deleteReply" parameterType="int">
+	DELETE FROM TBL_REPLY WHERE BNO=#{bno}
+</delete>
 </mapper>

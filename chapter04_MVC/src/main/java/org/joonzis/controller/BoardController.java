@@ -55,6 +55,11 @@ public class BoardController {
 	@PostMapping("/register")
 	public String register(BoardVO bvo) {
 		log.info("register..." + bvo);
+		
+		if(bvo.getAttachList()!=null) {
+			bvo.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
 		service.register(bvo);
 		return "redirect:/board/list"; // 경로 앞에 redirect: 붙이면 redirect 방식 실행
 	}
