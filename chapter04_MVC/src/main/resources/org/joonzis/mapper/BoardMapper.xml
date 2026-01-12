@@ -18,11 +18,21 @@
 	</select>
 	
 	<insert id="insertList" parameterType="org.joonzis.domain.BoardVO">
+	
 	<!-- 3. selectkey 사용 -->
 		<!-- <selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			SELECT SEQ_BOARD.nextval FROM dual
-		</selectKey>  -->
+		</selectKey> -->
 	
+		INSERT INTO TBL_BOARD VALUES(
+			#{bno},
+			#{title},
+			#{content},
+			#{writer},
+			SYSDATE,
+			SYSDATE,
+			0
+		)
 		<!-- INSERT INTO TBL_BOARD VALUES(
 			#{bno},
 			#{title},
@@ -32,28 +42,7 @@
 			SYSDATE,
 			0
 		) -->
-		
-		INSERT INTO TBL_BOARD VALUES(
-			SEQ_BOARD.NEXTVAL,
-			#{title},
-			#{content},
-			#{writer},
-			SYSDATE,
-			SYSDATE,
-			0
-		)
 	</insert>
-	
-	<!-- 1-a -->
-	<select id="getBno">
-		SELECT SEQ_BOARD.nextval FROM DUAL;
-	</select>
-	
-	<!-- 1-b -->
-	<!-- <select id="getBno">
-		SELECT SEQ_BOARD.currval FROM DUAL;
-	</select> -->
-	
 	
 	<select id="readList" parameterType="int" resultType="org.joonzis.domain.BoardVO">
 		SELECT * FROM TBL_BOARD WHERE BNO=#{bno}
@@ -73,6 +62,8 @@
 		UPDATE tbl_board set replycnt = replycnt +#{amount} where bno = #{bno}
 	</update>
 
-
+	<select id="">
+			
+	</select>
 	
 </mapper>
