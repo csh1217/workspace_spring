@@ -3,6 +3,7 @@ package org.joonzis.controller;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.joonzis.domain.BoardAttachVO;
+import org.joonzis.mapper.BoardAttachMapper;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -28,6 +30,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Controller
 public class UploadController {
+	
+	BoardAttachMapper mapper;
 	
 	@ResponseBody
 	@PostMapping(value = "/uploadAsyncAction",
@@ -117,6 +121,7 @@ public class UploadController {
 	      return ResponseEntity.ok("delete");
 	   }
 	
+
 	
 	// 오늘 날짜의 경로를 문자열로 생성
 	public String getFoleder() {

@@ -19,5 +19,5 @@ public interface BoardMapper {
 	// 2. 댓글 삽입/삭제 시 updateReplyCnt 실행
 	// => 트랜잭션 처리
 	// 3. 게시글 리스트에서 댓글 개수 변경 확인
-	public int findBno();
+	public int findBno(); // 현재 게시글의 bno 뽑기
 }

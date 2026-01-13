@@ -71,8 +71,8 @@ function showUploadedFile(uploadResultArr){
   });
   
   uploadResult.innerHTML = str;
-  
 }
+showUploadedFile();
 
 // 위에서 생성된 X에 클릭 이벤트 부여
 // 클릭 시  '/deleteFile' 경로로 fetch

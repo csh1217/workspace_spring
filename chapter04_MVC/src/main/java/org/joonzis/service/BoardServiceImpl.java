@@ -37,16 +37,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void register(BoardVO bvo) {
 		
-		
-		
 		log.info("register..." + bvo);
 		// 게시글 등록
 		mapper.insertList(bvo);
-		
 		List<BoardAttachVO> list = bvo.getAttachList();
 		//bno 받기
 		int bno = bvo.getBno(); // 1-1. SEQ.nextval로 받기
-		log.info(bno);
+//		log.info(bno);
 //		int bno = bvo.getBno(); // 3. selectkey 사용해서 받기
 		
 		log.info("bno....." + bno);
@@ -72,11 +69,32 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.deleteList(bno) == 1;
 	}
 
+	@Transactional
 	@Override
-	public boolean modify(BoardVO bvo) {
-		log.info("modify..." + bvo);
-		return mapper.updateList(bvo) == 1;
+	public boolean modify(BoardVO bvo, List<String> deleteUuid) {
+	    int bno = bvo.getBno();
+	    log.info("attachList = " + bvo.getAttachList());
+	    // 게시글 수정
+	    if (mapper.updateList(bvo) != 1) {
+	        return false;
+	    }
+	    
+	    // 업로드 파일 삭제
+	    if (deleteUuid != null && !deleteUuid.isEmpty()) {
+	        attachMapper.delete(deleteUuid);
+	    }
+	    
+	    
+	    if (bvo.getAttachList() != null && !bvo.getAttachList().isEmpty()) {
+	        for (BoardAttachVO attach : bvo.getAttachList()) {
+	            attach.setBno(bno);
+	            attachMapper.insert(attach);
+	        }
+	    }
+
+	    return true;
 	}
+
 
 	@Override
 	public int getTotal() {
@@ -90,7 +108,10 @@ public class BoardServiceImpl implements BoardService{
 		mapper.updateReplyCnt(bno, amount);
 	}
 
-
-	
+	@Override
+	public List<BoardAttachVO> getAttachList(int bno) {
+		log.info("getAttachList..." + bno);
+		return attachMapper.findByBno(bno);
+	}
 	
 }

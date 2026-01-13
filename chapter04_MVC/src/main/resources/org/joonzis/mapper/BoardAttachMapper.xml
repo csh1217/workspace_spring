@@ -16,8 +16,13 @@
 
 	<!-- 파일 삭제 -->
 	<delete id="delete">
-		DELETE FROM TBL_ATTACH WHERE UUID=#{uuid}
+    DELETE FROM tbl_attach
+    WHERE uuid IN
+    	<foreach collection="uuids" item="uuid" open="(" separator="," close=")">
+        	#{uuid}
+    	</foreach>
 	</delete>
+
 
 	<!-- 파일 찾기 -->
 	<select id="findByBno" resultType="org.joonzis.domain.BoardAttachVO">

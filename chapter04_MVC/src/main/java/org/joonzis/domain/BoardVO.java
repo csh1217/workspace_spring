@@ -15,4 +15,5 @@ public class BoardVO {
 	private Date regdate, updatedate;
 	
 	private List<BoardAttachVO> attachList;
+	private List<String> deleteUuid;
 }

@@ -20,9 +20,9 @@
 	<insert id="insertList" parameterType="org.joonzis.domain.BoardVO">
 	
 	<!-- 3. selectkey 사용 -->
-		<!-- <selectKey keyProperty="bno" resultType="int" order="BEFORE">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			SELECT SEQ_BOARD.nextval FROM dual
-		</selectKey> -->
+		</selectKey>
 	
 		INSERT INTO TBL_BOARD VALUES(
 			#{bno},
@@ -34,7 +34,7 @@
 			0
 		)
 		<!-- INSERT INTO TBL_BOARD VALUES(
-			#{bno},
+			SEQ_BOARD.nextval,
 			#{title},
 			#{content},
 			#{writer},
@@ -62,8 +62,8 @@
 		UPDATE tbl_board set replycnt = replycnt +#{amount} where bno = #{bno}
 	</update>
 
-	<select id="">
-			
+	<select id="getBno" resultType="int">
+			SELECT SEQ_BOARD.CURRVAL FROM DUAL
 	</select>
 	
 </mapper>
