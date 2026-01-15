@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -56,10 +57,12 @@ public class BoardController {
 	}
 	
 	// 게시글 등록 페이지 이동
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public void registerPage(){}
 	
 	// 게시글 등록
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register")
 	public String register(BoardVO bvo) {
 		log.info("register..." + bvo);

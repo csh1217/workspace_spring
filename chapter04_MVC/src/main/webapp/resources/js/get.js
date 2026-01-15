@@ -98,7 +98,7 @@ function registerModalPage(){
   replyUL2.innerHTML = '<a>새 댓글 등록</a>';
   // 입력 내용 초기화 & 불러오기
   inputReply.value = '';
-  inputReplyer.value = '';
+  inputReplyer.value = `${principal.username}`;
 
   openModal();
 }
@@ -107,7 +107,7 @@ function regReplyModalStyle(){
   modifyReplyBtn.classList.add('hide'); // classList : 클래스관리
   removeReplyBtn.classList.add('hide'); 
   addReplyBtn.classList.remove('hide');
-  inputReplyer.readOnly = false;
+  inputReplyer.readOnly = true;
   inputReplydate.closest('div').classList.add('hide'); 
 }
 

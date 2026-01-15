@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>member</h1>
+	<h1>annoMember</h1>
 </body>
 </html>

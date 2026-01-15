@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>member</h1>
+	<h1>Logout Page</h1>
+	<form action="/customLogout" method="get">
+		<button>로그아웃</button>
+	</form>
 </body>
 </html>

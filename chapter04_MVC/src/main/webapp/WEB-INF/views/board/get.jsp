@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://www.springframework.org/security/tags" prefix = "sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +41,12 @@
 			</table>
 		</form>
 		<div class="panel-body-btns">
-			<button type="button" class="btn btn-sec" id="modifyBtn">수정</button>
+			<sec:authentication property="principal" var="pinfo"/>
+			<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.username eq vo.writer }">
+					<button type="button" class="btn btn-sec" id="modifyBtn">수정</button>
+				</c:if>
+			</sec:authorize>
 			<button type="button" class="btn btn-fir" id="indexBtn">목록으로 이동</button>
 		</div>
 	</div>
@@ -49,7 +57,9 @@
             <a href="mainPage">댓글</a>
          </div>
          <div class="panel-footer-register">
-            <button type="button" class="btn btn-sec" id="replyBtn">댓글 달기</button>
+         	<sec:authorize access="isAuthenticated()">
+            	<button type="button" class="btn btn-sec" id="replyBtn">댓글 달기</button>
+            </sec:authorize>
          </div>
       </div>
       <div class="panel-footer-body">
