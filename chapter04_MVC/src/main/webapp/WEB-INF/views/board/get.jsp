@@ -54,7 +54,7 @@
 	<div class="panel-footer">
       <div class="panel-footer-header">
          <div class="panel-footer-title">
-            <a href="mainPage">댓글</a>
+            <a>댓글</a>
          </div>
          <div class="panel-footer-register">
          	<sec:authorize access="isAuthenticated()">
@@ -72,7 +72,7 @@
                   </div>
                   <p>내용</p>
                </div>
-            </li>
+            </li>환속독도
          </ul>
       </div>
    </div>
@@ -129,8 +129,12 @@
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-sec" id="addReplyBtn">등록</button>
-            <button type="button" class="btn btn-thi" id="modifyReplyBtn">수정</button>
-            <button type="button" class="btn btn-fou" id="removeReplyBtn">삭제</button>
+				<sec:authorize access="isAuthenticated()">
+					
+	            		<button type="button" class="btn btn-thi" id="modifyReplyBtn">수정</button>
+	            		<button type="button" class="btn btn-fou" id="removeReplyBtn">삭제</button>
+	            	
+				</sec:authorize>
             <button type="button" class="btn btn-fir" id="closeModalBtn">취소</button>
          </div>
       </div>

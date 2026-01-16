@@ -148,9 +148,12 @@ f.userPwRe.addEventListener('keyup', e => {
 });
 
 function join(){
-  // 검증 확인
+
+  //검증 확인
   if(!nameCk || !idCk || !pwCk || !pwReCk){
 		alert('입력 내용을 확인해주십시오.');
 		return;
 	}
+	f.action = "/member/join";
+	f.submit();
 }

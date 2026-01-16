@@ -104,8 +104,10 @@ function registerModalPage(){
 }
 
 function regReplyModalStyle(){
-  modifyReplyBtn.classList.add('hide'); // classList : 클래스관리
-  removeReplyBtn.classList.add('hide'); 
+  if(principal.username == inputReplyer){
+    modifyReplyBtn.classList.add('hide'); // classList : 클래스관리
+    removeReplyBtn.classList.add('hide'); 
+  }
   addReplyBtn.classList.remove('hide');
   inputReplyer.readOnly = true;
   inputReplydate.closest('div').classList.add('hide'); 
@@ -147,8 +149,10 @@ function modifyModalPage(li){
 }
 
 function modReplyModalStyle(){
-  modifyReplyBtn.classList.remove('hide');
-  removeReplyBtn.classList.remove('hide');
+  if(principal.username == inputReplyer){
+    modifyReplyBtn.classList.remove('hide');
+    removeReplyBtn.classList.remove('hide');
+  }
   addReplyBtn.classList.add('hide');
   inputReplyer.readOnly = true;
   inputReplydate.readOnly = true;
@@ -213,6 +217,7 @@ function showUploadedFile(uploadResultArr){
   uploadResult.innerHTML = str;
   
 }
+
 
 // rs.add(
 //   {

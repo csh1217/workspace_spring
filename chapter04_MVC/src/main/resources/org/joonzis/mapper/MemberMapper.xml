@@ -26,6 +26,27 @@
 			mem.userid=#{userId}
 	</select>
 	
+	
+	<insert id="join" parameterType="org.joonzis.domain.MemberVO">
+		insert into tbl_member values(
+			#{userId},
+			#{userPw},
+			#{userName},
+			sysdate,
+			sysdate,
+			1
+		)
+	</insert>
+	
+	<insert id="setAuth" parameterType="String">
+		insert into tbl_member_auth values(
+			#{userid},
+			'ROLE_MEMBER'
+		)
+	</insert>
+	
+	
+	
 	<select id="validate" resultType="int">
 		select count(*) from tbl_member where userid=#{userId}
 	</select>
