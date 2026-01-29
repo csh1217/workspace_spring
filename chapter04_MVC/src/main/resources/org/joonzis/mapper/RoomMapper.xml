@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.joonzis.mapper.RoomMapper">
+
+	<!-- 1. 두 유저의 채팅방 아이디 찾기(중복 방지를 위한) -->
+	<select id="findRoomId" resultType="Long">
+		SELECT room_id
+		FROM tbl_room
+		WHERE (sender_id = #{user1} AND receiver_id = #{user2})
+		   	OR (sender_id = #{user2} AND receiver_id = #{user1})
+	</select>
+
+	<!-- 2. 채팅방 insert -->
+	<insert id="insert" parameterType="org.joonzis.domain.RoomVO">
+	    <selectKey keyProperty="room_id" resultType="long" order="BEFORE">
+        	SELECT seq_room.NEXTVAL FROM dual
+	    </selectKey>
+	    INSERT INTO tbl_room (room_id, created_at, sender_id, receiver_id)
+	    VALUES (#{room_id}, CURRENT_TIMESTAMP, #{sender_id}, #{receiver_id})
+	</insert>
+	
+
+	<!-- 3. 채팅방 상세 조회 -->
+	<select id="findById" resultType="org.joonzis.domain.RoomVO">
+		SELECT
+		    room_id,
+		    sender_id,
+		    receiver_id,
+		    created_at
+		FROM tbl_room
+		WHERE room_id = #{room_id}
+	</select>
+	
+	<!-- 4. 유저가 속한 모든 채팅방 조회 -->
+	<select id="findByUserId" resultType="org.joonzis.domain.RoomVO">
+		SELECT r.room_id,
+	       r.sender_id,
+	       r.receiver_id,
+	       r.created_at
+		FROM tbl_room r
+		JOIN tbl_chat_room_user cru
+		  ON r.room_id = cru.room_id
+		WHERE cru.user_id = #{user_id}
+		ORDER BY r.created_at DESC
+	
+	</select>
+</mapper>
